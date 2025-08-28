@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATMOS - Game Site</title>
+
+  <!-- Google Font for cool "ATMOS" text -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #111;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #222;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: #00ffe1;
+      letter-spacing: 3px;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffe1;
+    }
+
+    main {
+      padding: 40px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .game-card iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .game-title {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #00ffe1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ATMOS</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#games">Games</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 id="games">Games</h2>
+    <div class="game-grid">
+
+      <!-- Game 1 -->
+      <div class="game-card">
+        <iframe src="https://example.com/yourgame1"></iframe>
+        <div class="game-title">Game Title 1</div>
+      </div>
+
+      <!-- Game 2 -->
+      <div class="game-card">
+        <iframe src="https://example.com/yourgame2"></iframe>
+        <div class="game-title">Game Title 2</div>
+      </div>
+
+      <!-- Easily add more games here -->
+    </div>
+  </main>
+</body>
+</html>
