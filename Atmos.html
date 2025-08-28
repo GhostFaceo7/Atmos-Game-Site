@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATMOS - Game Site</title>
+
+  <!-- Google Font for cool "ATMOS" text -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #111;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #222;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: #00ffe1;
+      letter-spacing: 3px;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffe1;
+    }
+
+    main {
+      padding: 40px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      display: none; /* hide initially */
+    }
+
+    .game-card iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .game-title {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #00ffe1;
+    }
+
+    /* Spinner Styles */
+    .spinner {
+      display: none;
+      margin: 30px auto;
+      border: 6px solid #333;
+      border-top: 6px solid #00ffe1;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ATMOS</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#games">Games</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 id="games">Games</h2>
+    <div class="game-grid">
+
+      <!-- Game 1 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=flappybird" scrolling="no"></iframe>
+        <div class="game-title">Flappy Bird</div>
+      </div>
+
+      <!-- Game 2 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=stackjump" scrolling="no"></iframe>
+        <div class="game-title">Stack Jump</div>
+      </div>
+
+      <!-- Game 3 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=templerun" scrolling="no"></iframe>
+        <div class="game-title">Temple Run</div>
+      </div>
+
+      <!-- Game 4 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=2048" scrolling="no"></iframe>
+        <div class="game-title">2048</div>
+      </div>
+
+      <!-- Game 5 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=angrybirds" scrolling="no"></iframe>
+        <div class="game-title">Angry Birds</div>
+      </div>
+
+      <!-- Game 6 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=snake" scrolling="no"></iframe>
+        <div class="game-title">Classic Snake</div>
+      </div>
+
+      <!-- Game 7 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=crossyroad" scrolling="no"></iframe>
+        <div class="game-title">Crossy Road</div>
+      </div>
+
+      <!-- Game 8 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=helixjump" scrolling="no"></iframe>
+        <div class="game-title">Helix Jump</div>
+      </div>
+
+      <!-- Game 9 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=pacman" scrolling="no"></iframe>
+        <div class="game-title">Pac-Man</div>
+      </div>
+
+      <!-- Game 10 -->
+      <div class="game-card">
+        <iframe src="https://funhtml5games.com?embed=subwaysurfers" scrolling="no"></iframe>
+        <div class="game-title">Subway Surfers</div>
+      </div>
+
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="spinner"></div>
+  </main>
+
+  <script>
+    const gameCards = document.querySelectorAll(".game-card");
+    const spinner = document.querySelector(".spinner");
+    let visibleCount = 4; // start with 4 games
+
+    // Show first 4 games
+    for (let i = 0; i < visibleCount; i++) {
+      if (gameCards[i]) gameCards[i].style.display = "block";
+    }
+
+    let loading = false;
+
+    window.addEventListener("scroll", () => {
+      if (loading) return;
+
+      // If user is near bottom
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        loading = true;
+        spinner.style.display = "block";
+
+        setTimeout(() => {
+          let revealed = 0;
+          for (let i = visibleCount; i < visibleCount + 3; i++) {
+            if (gameCards[i]) {
+              gameCards[i].style.display = "block";
+              revealed++;
+            }
+          }
+          visibleCount += revealed;
+          spinner.style.display = "none";
+          loading = false;
+        }, 1000); // simulate loading delay
+      }
+    });
+  </script>
+</body>
+</html>
