@@ -60,7 +60,7 @@
       padding: 15px;
       border-radius: 10px;
       text-align: center;
-      display: none; /* hide initially */
+      display: none; /* hidden until loaded */
     }
 
     .game-card iframe {
@@ -76,7 +76,7 @@
       color: #00ffe1;
     }
 
-    /* Spinner Styles */
+    /* Spinner */
     .spinner {
       display: none;
       margin: 30px auto;
@@ -109,87 +109,88 @@
 
       <!-- Game 1 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=flappybird" scrolling="no"></iframe>
+        <iframe src="https://games.cdn.famobi.com/html5games/f/flappy-bird/v080/?fg_domain=play.famobi.com" scrolling="no"></iframe>
         <div class="game-title">Flappy Bird</div>
       </div>
 
       <!-- Game 2 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=stackjump" scrolling="no"></iframe>
-        <div class="game-title">Stack Jump</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/0/2048/v123/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">2048</div>
       </div>
 
       <!-- Game 3 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=templerun" scrolling="no"></iframe>
-        <div class="game-title">Temple Run</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/s/snake-vs-blocks/v080/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">Snake vs Blocks</div>
       </div>
 
       <!-- Game 4 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=2048" scrolling="no"></iframe>
-        <div class="game-title">2048</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/c/cut-the-rope/v200/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">Cut The Rope</div>
       </div>
 
       <!-- Game 5 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=angrybirds" scrolling="no"></iframe>
-        <div class="game-title">Angry Birds</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/j/jewel-shuffle/v180/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">Jewel Shuffle</div>
       </div>
 
       <!-- Game 6 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=snake" scrolling="no"></iframe>
-        <div class="game-title">Classic Snake</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/s/stack-tower/v080/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">Stack Tower</div>
       </div>
 
       <!-- Game 7 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=crossyroad" scrolling="no"></iframe>
-        <div class="game-title">Crossy Road</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/f/fruit-slice/v080/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">Fruit Slice</div>
       </div>
 
       <!-- Game 8 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=helixjump" scrolling="no"></iframe>
-        <div class="game-title">Helix Jump</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/c/car-rush/v080/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">Car Rush</div>
       </div>
 
       <!-- Game 9 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=pacman" scrolling="no"></iframe>
-        <div class="game-title">Pac-Man</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/f/fish-story/v180/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">Fish Story</div>
       </div>
 
       <!-- Game 10 -->
       <div class="game-card">
-        <iframe src="https://funhtml5games.com?embed=subwaysurfers" scrolling="no"></iframe>
-        <div class="game-title">Subway Surfers</div>
+        <iframe src="https://games.cdn.famobi.com/html5games/b/bubble-tower-3d/v180/?fg_domain=play.famobi.com" scrolling="no"></iframe>
+        <div class="game-title">Bubble Tower 3D</div>
       </div>
 
     </div>
 
-    <!-- Loading Spinner -->
+    <!-- Spinner -->
     <div class="spinner"></div>
   </main>
 
   <script>
     const gameCards = document.querySelectorAll(".game-card");
     const spinner = document.querySelector(".spinner");
-    let visibleCount = 4; // start with 4 games
+    let visibleCount = 4; // show 4 games first
+    let loading = false;
 
-    // Show first 4 games
+    // Show initial games
     for (let i = 0; i < visibleCount; i++) {
       if (gameCards[i]) gameCards[i].style.display = "block";
     }
-
-    let loading = false;
 
     window.addEventListener("scroll", () => {
       if (loading) return;
 
       // If user is near bottom
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        if (visibleCount >= gameCards.length) return;
+
         loading = true;
         spinner.style.display = "block";
 
@@ -210,3 +211,4 @@
   </script>
 </body>
 </html>
+
